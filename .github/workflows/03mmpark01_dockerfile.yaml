@@ -40,3 +40,4 @@ jobs:
 
       - name: Run automated test #3
         run: curl http://localhost:8080/animal || exit 1
+

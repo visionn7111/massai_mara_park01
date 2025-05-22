@@ -37,7 +37,7 @@ jobs:
       - name: Run automated test #1
         run: curl http://localhost:8080 || exit 1
 
-      - name: Run automated test #2
+      - name: Run automated test #2ai
         run: curl http://localhost:8080/images || exit 1
 
       - name: Run automated test #3
