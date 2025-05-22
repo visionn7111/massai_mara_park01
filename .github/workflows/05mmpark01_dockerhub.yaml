@@ -1,9 +1,9 @@
 name: massai mara park 01 dockerhub
-on:
-  workflow_dispatch:
+
+on: workflow_dispatch
 
 jobs:
-  mmpark01_compose_build:
+  mmpark01_dockerhub:
     runs-on: ubuntu-22.04
 
     steps:
@@ -18,9 +18,10 @@ jobs:
 
       - name: docker operations
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/massai_mara:v1 .
-          docker push ${{ secrets.DOCKER_USERNAME }}/massai_mara:v1 .
+          docker build -t  ${{ secrets.DOCKER_USERNAME }}/massai_mara:v1  .
 
-      - name: logout from doccker hub
+          docker push  ${{ secrets.DOCKER_USERNAME }}/massai_mara:v1
+
+      - name: logout from docker hub
         if: always()
         run: docker logout
