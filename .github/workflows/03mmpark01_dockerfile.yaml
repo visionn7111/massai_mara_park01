@@ -1,7 +1,6 @@
 name: massai mara park 01 dockerfile build
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   mmpark01_dockerfile_build:
@@ -25,19 +24,22 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Run Docker container
+      - name: run docker container
         run: |
           docker run -d --name mmpark01 -p 8080:8080 massai_mara:v1
-          sleep 30
+          sleep 20
+
           docker ps
-          docker logs mmpark01
+          docker logs  mmpark01
 
-      - name: Run automated test #1
-        run: curl http://localhost:8080 || exit 1
+      - name: run automated test #1
+        run: |
+          curl  http://localhost:8080   ||   exit  1
 
-      - name: Run automated test #2
-        run: curl http://localhost:8080/images || exit 1
+      - name: run automated test #2
+        run: |
+          curl  http://localhost:8080/images   ||   exit  1
 
-      - name: Run automated test #3
-        run: curl http://localhost:8080/animal || exit 1
-
+      - name: run automated test #3
+        run: |
+          curl  http://localhost:8080/animal   ||   exit  1
