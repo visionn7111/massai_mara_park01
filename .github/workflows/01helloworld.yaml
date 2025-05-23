@@ -7,9 +7,22 @@ jobs:
   hello-world:
     runs-on: ubuntu-22.04
     steps:
-      - name: Print hello message
-        run: echo "Hello, GitHub Actions! "
+        - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: pring GHA run count
-        run: |
-          echo "count: ${{github.run_number}}"
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          load: true
+          tags: massai_mara:v1
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+
+    
